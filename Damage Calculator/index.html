@@ -1,0 +1,182 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayato Damage Calculator</title>
+    <link rel="icon" type="image/png" href="images/favicon round.png">
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/main.js"></script>
+
+</head>
+
+<body onload="setAllViews()">
+
+    <h1>Damage Calculator</h1>
+
+    <!-- For entering numbers -->
+    <div class="stats-row-container">
+        <div id="base-values" class="row-category">
+            <h3>Ayato's Base Stats</h3>
+
+            <p>Base attack</p>
+            <input type="number" id="char-base-atk"/>
+
+            <p>Base HP</p>
+            <input type="number" id="char-base-hp"/>
+
+            <p>Base def</p>
+            <input type="number" id="char-base-def"/>
+
+            <p>Elemental damage bonus</p>
+            <input type="number" id="char-elemental-bonus"/>
+
+            <p>Crit rate</p>
+            <input type="number" id="char-cr"/>
+
+            <p>Crit damage</p>
+            <input type="number" id="char-cd"/>
+
+        </br></br>
+
+            <h3>Ayato's Talent Levels</h3>
+            
+            <p>Normal Attack Level</p>
+            <div class="range-bar">
+                <input type="range" id="char-na-lvl" min="1" max="10" oninput="this.nextElementSibling.value = this.value"/>
+                <output>6</output>
+            </div>
+
+            <p>Skill Level</p>
+            <div class="range-bar">
+                <input type="range" id="char-skill-lvl" min="1" max="10" oninput="this.nextElementSibling.value = this.value"/>
+                <output>6</output>
+            </div>
+
+            <p>Burst Level</p>
+            <div class="range-bar">
+                <input type="range" id="char-burst-lvl" min="1" max="10" oninput="this.nextElementSibling.value = this.value"/>
+                <output>6</output>
+            </div>
+
+            <p>Constellations</p>
+            <div class="const-checkbox"><p>C3</p><input type="checkbox" id="char-has-c3"/></div>
+            <div class="const-checkbox"><p>C5</p><input type="checkbox" id="char-has-c5"/></div>
+        </div>
+
+        <div id="weapon-values" class="row-category">
+            <h3>Weapon Stats</h3>
+
+            <p>Weapon base attack</p>
+            <input type="number" id="weapon-base-atk"/>
+
+            <p>Weapon substat</p>
+            <select id="weapon-substat-selection">
+                <option value="atk">Atk</option>
+                <option value="hp">HP</option>
+                <option value="def">Def</option>
+                <option value="crit-rate">Crit rate</option>
+                <option value="crit-dmg">Crit dmg</option>
+                <option value="em">Elemental mastery</option>
+                <option value="er">Energy recharge</option>
+            </select>
+
+            <p>Substat percentage</p>
+            <input type="number" id="weapon-substat-val"/>
+
+            <p>Weapon passive</p>
+            <select id="weapon-passive-selection">
+                <option value="atk">Atk</option>
+                <option value="hp">HP</option>
+                <option value="def">Def</option>
+                <option value="dmg-bonus">DMG bonus</option>
+            </select>
+
+            <p>Passive percentage</p>
+            <input type="number" id="weapon-passive-val"/>
+        </div>
+
+        <div id="artifact-values" class="row-category">
+            <h3>Artifact Stats</h3>
+
+            <p>Set effect type</p>
+            <select id="set-effect-selection">
+                <option value="atk">Atk</option>
+                <option value="hp">HP</option>
+                <option value="def">Def</option>
+                <option value="dmg-bonus">DMG bonus</option>
+            </select>
+
+            <p>Set effect percentage</p>
+            <input type="number" id="set-effect-val"/>
+
+            <p>Flat atk</p>
+            <input type="number" id="artifacts-atk"/>
+
+            <p>Atk%</p>
+            <input type="number" id="artifacts-atk-percent"/>
+
+            <p>Flat HP</p>
+            <input type="number" id="artifacts-hp"/>
+
+            <p>HP%</p>
+            <input type="number" id="artifacts-hp-percent"/>
+        </div>
+
+        <div id="artifact-values" class="row-category">
+            <h3> </h3>
+            
+            <p>Flat def</p>
+            <input type="number" id="artifacts-def"/>
+
+            <p>Def%</p>
+            <input type="number" id="artifacts-def-percent"/>
+
+            <p>Elemental damage bonus</p>
+            <input type="number" id="artifacts-elemental-bonus"/>
+
+            <p>Crit rate</p>
+            <input type="number" id="artifacts-cr"/>
+
+            <p>Crit damage</p>
+            <input type="number" id="artifacts-cd"/>
+        </div>
+    </div>
+
+    <button type="button" name="Submit" onclick="calculateOutputs()">Submit</button>
+
+    <!-- For displaying calcs -->
+    <div class="stats-row-container">
+        <div class="row-category output-row-item-lhs">
+            <h3>Calculated Damage</h3>
+            <p><b>Damage without passives considered</b></p>
+            <p>Non-crit damage</p>
+            <p>Crit damage</p>
+            <p>Average damage</p>
+        </br>
+            <p><b>Damage with passives considered</b></p>
+            <p>Non-crit damage</p>
+            <p>Crit damage</p>
+            <p>Average damage</p>
+        </div>
+
+        <div class="row-category output-row-item-rhs">
+            <h3> </h3>
+            <p> </p>
+            <p id="no-passives-non-crit"> </p>
+            <p id="no-passives-crit"> </p>
+            <p id="no-passives-avg"> </p>
+        </br>
+            <p> </p>
+            <p id="passives-non-crit"> </p>
+            <p id="passives-crit"> </p>
+            <p id="passives-avg"> </p>
+        </div>
+    </div>
+
+</body>
+
+</html>
