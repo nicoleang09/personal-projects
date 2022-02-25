@@ -10,15 +10,12 @@
     --hue-color: 29; /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
 
     /* HSL color mode */
-    --first-color: hsl(var(--hue-color), 21%, 50%);
-    --first-color-second: hsl(var(--hue-color), 21%, 50%);
-    --first-color-alt: hsl(var(--hue-color), 9%, 42%);
-    --first-color-lighter: hsl(var(--hue-color), 52%, 74%);
-    --title-color: hsl(var(--hue-color), 9%, 42%);
-    --text-color: hsl(0, 0%, 24%);
-    --text-color-light: hsl(0, 0%, 100%);
+    --first-color: #6CB7DA;
+    --title-color: #6CB7DA;
+    --text-color: #453B36;
+    --text-color-light: #E3E3DE;
     --input-color: hsl(var(--hue-color), 22%, 85%);
-    --body-color: hsl(var(--hue-color), 12%, 88%);
+    --body-color: #F8FAFC;
     --container-color: #fff;
 
     /*========== Font and typography ==========*/
@@ -129,6 +126,17 @@ button {
 .range-bar p, input {
     display: inline-block;
     margin-right: 5px;
+}
+
+.range-bar input {
+    background: linear-gradient(to right, var(--first-color) 0%, var(--first-color) 55%, #fff 45%, #fff 100%);
+    border: solid 1px var(--text-color-light);
+    border-radius: 8px;
+    height: 8px;
+    /* width: 356px; */
+    outline: none;
+    transition: background 450ms ease-in;
+    -webkit-appearance: none;
 }
 
 .const-checkbox p, input {

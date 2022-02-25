@@ -37,6 +37,17 @@ var artifactElementalBonus;
 var artifactCr;
 var artifactCd;
 
+function setRangeSlider(view) {
+    view.nextElementSibling.value = view.value;
+    var value = ((view.value - view.min) / (view.max - view.min)) * 100;
+    view.style.background =
+        "linear-gradient(to right, var(--first-color) 0%, var(--first-color) " +
+        value +
+        "%, #fff " +
+        value +
+        "%, white 100%)";
+}
+
 function setAllViews() {
     setCharInputViews();
     setWeaponInputViews();

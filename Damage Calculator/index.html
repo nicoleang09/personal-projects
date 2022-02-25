@@ -14,7 +14,6 @@
 </head>
 
 <body onload="setAllViews()">
-
     <h1>Damage Calculator</h1>
 
     <!-- For entering numbers -->
@@ -46,19 +45,20 @@
             
             <p>Normal Attack Level</p>
             <div class="range-bar">
-                <input type="range" id="char-na-lvl" min="1" max="10" oninput="this.nextElementSibling.value = this.value"/>
+                <input type="range" id="char-na-lvl" min="1" max="10" oninput="setRangeSlider(this)"/>
                 <output>6</output>
             </div>
 
             <p>Skill Level</p>
             <div class="range-bar">
-                <input type="range" id="char-skill-lvl" min="1" max="10" oninput="this.nextElementSibling.value = this.value"/>
+                <input type="range" id="char-skill-lvl" min="1" max="10" oninput="setRangeSlider(this)"/>
                 <output>6</output>
             </div>
 
             <p>Burst Level</p>
             <div class="range-bar">
-                <input type="range" id="char-burst-lvl" min="1" max="10" oninput="this.nextElementSibling.value = this.value"/>
+                <!-- <input type="range" id="char-burst-lvl" min="1" max="10" oninput="this.nextElementSibling.value = this.value"/> -->
+                <input type="range" id="char-burst-lvl" min="1" max="10" oninput="setRangeSlider(this)"/>
                 <output>6</output>
             </div>
 
