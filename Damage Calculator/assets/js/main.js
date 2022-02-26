@@ -175,10 +175,16 @@ function calculateOutputs() {
             break;
     }
 
+    console.log(MultiplierValues.getSkill3HitMultiplier(+charELvl));
+
     var totalAtk = baseAtk * (1 + atkMultiplier / 100);
     var totalHp = baseHp * (1 + hpMultiplier / 100);
     var totalDef = baseDef * (1 + defMultiplier / 100);
-    var totalENonCrit = totalAtk * (1 + elemDmgBonus / 100 + dmgBonus / 100);
+    var totalENonCrit =
+        totalAtk *
+            (1 + MultiplierValues.getSkill3HitMultiplier(+charELvl) / 100) *
+            (1 + elemDmgBonus / 100 + dmgBonus / 100) +
+        (MultiplierValues.getWaveflashMultiplier(+charELvl) / 100) * totalHp;
     var totalECrit = totalENonCrit * (1 + critDmg / 100);
     var totalEAvg =
         (critRate / 100) * totalECrit + (1 - critRate / 100) * totalENonCrit;
