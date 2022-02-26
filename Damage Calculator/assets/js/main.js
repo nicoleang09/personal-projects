@@ -68,8 +68,8 @@ function getWeaponInputValues() {
 }
 
 function getArtifactInputValues() {
-    artifactSetEffect = document.getElementById("set-effect-selection").value;
-    artifactSetEffectVal = document.getElementById("set-effect-val").value;
+    artifactSetEffect = document.getElementById("2set-effect-selection").value;
+    artifactSetEffectVal = document.getElementById("2set-effect-val").value;
     artifactFlatAtk = document.getElementById("artifacts-atk").value;
     artifactFlatHp = document.getElementById("artifacts-hp").value;
     artifactFlatDef = document.getElementById("artifacts-def").value;
@@ -100,36 +100,35 @@ function calculateOutputs() {
     getWeaponInputValues();
     getArtifactInputValues();
 
-    var baseAtk = charBaseAtk + weaponBaseAtk;
-    var atkMultiplier = artifactAtkPercent;
-    var flatAtkBonus = artifactFlatAtk;
-    var baseHp = charBaseHp;
-    var hpMultiplier = artifactHpPercent;
-    var flatHpBonus = artifactFlatHp;
-    var baseDef = charBaseDef;
-    var defMultiplier = artifactDefPercent;
-    var flatDefBonus = artifactFlatDef;
-    var elemDmgBonus = charElementalBonus;
+    var baseAtk = +charBaseAtk + +weaponBaseAtk;
+    var atkMultiplier = +artifactAtkPercent;
+    var flatAtkBonus = +artifactFlatAtk;
+    var baseHp = +charBaseHp;
+    var hpMultiplier = +artifactHpPercent;
+    var flatHpBonus = +artifactFlatHp;
+    var baseDef = +charBaseDef;
+    var defMultiplier = +artifactDefPercent;
+    var flatDefBonus = +artifactFlatDef;
+    var elemDmgBonus = +charElementalBonus;
     var dmgBonus = 0;
-    var critRate = charCr + artifactCr;
-    var critDmg = charCd + artifactCd;
+    var critRate = +charCr + +artifactCr;
+    var critDmg = +charCd + +artifactCd;
 
-    var substatVal = weaponSubstatVal;
     switch (weaponSubstat) {
         case "atk":
-            atkMultiplier += substatVal;
+            atkMultiplier += +weaponSubstatVal;
             break;
         case "hp":
-            hpMultiplier += substatVal;
+            hpMultiplier += +weaponSubstatVal;
             break;
         case "def":
-            defMultiplier += substatVal;
+            defMultiplier += +weaponSubstatVal;
             break;
         case "crit-rate":
-            critRate += substatVal;
+            critRate += +weaponSubstatVal;
             break;
         case "crit-dmg":
-            critDmg += substatVal;
+            critDmg += +weaponSubstatVal;
             break;
         case "em":
             break;
@@ -139,37 +138,38 @@ function calculateOutputs() {
             break;
     }
 
-    var weaponPassiveValue = weaponPassiveVal.value;
-    switch (weaponPassive.value) {
+    switch (weaponPassive) {
         case "atk":
-            atkMultiplier += weaponPassiveValue;
+            atkMultiplier += +weaponPassiveVal;
             break;
         case "hp":
-            hpMultiplier += weaponPassiveValue;
+            hpMultiplier += +weaponPassiveVal;
             break;
         case "def":
-            defMultiplier += weaponPassiveValue;
+            defMultiplier += +weaponPassiveVal;
             break;
         case "dmg-bonus":
-            dmgBonus += weaponPassiveValue;
+            dmgBonus += +weaponPassiveVal;
             break;
         default:
             break;
     }
 
-    var artifactPassiveVal = artifactSetEffectVal.value;
-    switch (artifactSetEffect.value) {
+    switch (artifactSetEffect) {
         case "atk":
-            atkMultiplier += artifactPassiveVal;
+            atkMultiplier += +artifactSetEffectVal;
             break;
         case "hp":
-            hpMultiplier += artifactPassiveVal;
+            hpMultiplier += +artifactSetEffectVal;
             break;
         case "def":
-            defMultiplier += artifactPassiveVal;
+            defMultiplier += +artifactSetEffectVal;
             break;
         case "dmg-bonus":
-            dmgBonus += artifactPassiveVal;
+            dmgBonus += +artifactSetEffectVal;
+            break;
+        case "elem-dmg-bonus":
+            elemDmgBonus += +artifactSetEffectVal;
             break;
         default:
             break;
@@ -187,7 +187,7 @@ function calculateOutputs() {
     eCritView.innerText = totalECrit;
     eAvgView.innerText = totalEAvg;
 
-    qNonCritView.innerText = totalQNonCrit;
-    qCritView.innerText = totalQCrit;
-    qAvgView.innerText = totalQAvg;
+    // qNonCritView.innerText = totalQNonCrit;
+    // qCritView.innerText = totalQCrit;
+    // qAvgView.innerText = totalQAvg;
 }
