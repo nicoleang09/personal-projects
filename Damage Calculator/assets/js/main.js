@@ -189,9 +189,9 @@ function calculateOutputs() {
     var totalEAvg =
         (critRate / 100) * totalECrit + (1 - critRate / 100) * totalENonCrit;
 
-    eNonCritView.innerText = totalENonCrit;
-    eCritView.innerText = totalECrit;
-    eAvgView.innerText = totalEAvg;
+    eNonCritView.innerText = totalENonCrit.toFixed(2);
+    eCritView.innerText = totalECrit.toFixed(2);
+    eAvgView.innerText = totalEAvg.toFixed(2);
 
     // qNonCritView.innerText = totalQNonCrit;
     // qCritView.innerText = totalQCrit;

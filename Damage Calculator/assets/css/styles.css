@@ -94,6 +94,25 @@ button {
     margin: 20px 0px 20px 0px;
 }
 
+table td {
+    text-align: right;
+}
+
+table .heading-row {
+    text-align: left;
+}
+
+table .row-title {
+    width: 200px;
+    word-wrap: normal;
+}
+
+table .heading-col {
+    font-weight: bold;
+    width: 140px;
+    text-align: center;
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
     width: 10px;
