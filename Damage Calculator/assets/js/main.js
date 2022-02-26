@@ -142,16 +142,16 @@ function calculateOutputs() {
     var weaponPassiveValue = weaponPassiveVal.value;
     switch (weaponPassive.value) {
         case "atk":
-            passivesAtkMultiplier += weaponPassiveValue;
+            atkMultiplier += weaponPassiveValue;
             break;
         case "hp":
-            passivesHpMultiplier += weaponPassiveValue;
+            hpMultiplier += weaponPassiveValue;
             break;
         case "def":
-            passivesDefMultiplier += weaponPassiveValue;
+            defMultiplier += weaponPassiveValue;
             break;
         case "dmg-bonus":
-            passivesDmgBonus += weaponPassiveValue;
+            dmgBonus += weaponPassiveValue;
             break;
         default:
             break;
@@ -160,95 +160,34 @@ function calculateOutputs() {
     var artifactPassiveVal = artifactSetEffectVal.value;
     switch (artifactSetEffect.value) {
         case "atk":
-            passivesAtkMultiplier += artifactPassiveVal;
+            atkMultiplier += artifactPassiveVal;
             break;
         case "hp":
-            passivesHpMultiplier += artifactPassiveVal;
+            hpMultiplier += artifactPassiveVal;
             break;
         case "def":
-            passiveDefMultiplier += artifactPassiveVal;
+            defMultiplier += artifactPassiveVal;
             break;
         case "dmg-bonus":
-            passivesDmgBonus += artifactPassiveVal;
+            dmgBonus += artifactPassiveVal;
             break;
         default:
             break;
     }
 
-    var noPassivesNonCrit =
-        baseAtk *
-        (1 + atkMultiplier / 100) *
-        (skillMultiplier / 100) *
-        (1 + elemDmgBonus / 100);
-    var noPassivesCrit = noPassivesNonCrit * (1 + critDmg / 100);
-    var noPassivesAvg =
-        (critRate / 100) * noPassivesCrit +
-        (1 - critRate / 100) * noPassivesNonCrit;
+    var totalAtk = baseAtk * (1 + atkMultiplier / 100);
+    var totalHp = baseHp * (1 + hpMultiplier / 100);
+    var totalDef = baseDef * (1 + defMultiplier / 100);
+    var totalENonCrit = totalAtk * (1 + elemDmgBonus / 100 + dmgBonus / 100);
+    var totalECrit = totalENonCrit * (1 + critDmg / 100);
+    var totalEAvg =
+        (critRate / 100) * totalECrit + (1 - critRate / 100) * totalENonCrit;
 
-    var passivesNonCrit =
-        baseAtk *
-        (1 + atkMultiplier / 100 + passivesAtkMultiplier / 100) *
-        (skillMultiplier / 100) *
-        (1 + elemDmgBonus / 100 + passivesDmgBonus / 100);
-    var passivesCrit = passivesNonCrit * (1 + critDmg / 100);
-    var passivesAvg =
-        (critRate / 100) * passivesCrit +
-        (1 - critRate / 100) * passivesNonCrit;
+    eNonCritView.innerText = totalENonCrit;
+    eCritView.innerText = totalECrit;
+    eAvgView.innerText = totalEAvg;
 
-    // Add special multipler dmg
-    var specialMultiplier = charSpecialScalingVal.value;
-    switch (charSpecialScalingStat.value) {
-        case "atk":
-            var noPassivesTotalAtk =
-                baseAtk * (1 + atkMultiplier / 100) + flatAtkBonus;
-            var passivesTotalAtk =
-                baseAtk *
-                    (1 + atkMultiplier / 100 + passivesAtkMultiplier / 100) +
-                flatAtkBonus;
-            var noPassivesBonus =
-                noPassivesTotalAtk * (specialMultiplier / 100);
-            var passivesBonus = passivesTotalAtk * (specialMultiplier / 100);
-
-            noPassivesNonCrit += noPassivesBonus;
-            passivesNonCrit += passivesBonus;
-
-            break;
-        case "hp":
-            var noPassivesTotalHp =
-                baseHp * (1 + hpMultiplier / 100) + flatHpBonus;
-            var passivesTotalHp =
-                baseHp * (1 + hpMultiplier / 100 + passivesHpMultiplier / 100) +
-                flatHpBonus;
-            var noPassivesBonus = noPassivesTotalHp * (specialMultiplier / 100);
-            var passivesBonus = passivesTotalHp * (specialMultiplier / 100);
-
-            noPassivesNonCrit += noPassivesBonus;
-            passivesNonCrit += passivesBonus;
-
-            break;
-        case "def":
-            var noPassivesTotalDef =
-                baseDef * (1 + defMultiplier / 100) + flatDefBonus;
-            var passivesTotalDef =
-                baseDef *
-                    (1 + defMultiplier / 100 + passivesDefMultiplier / 100) +
-                flatDefBonus;
-            var noPassivesBonus =
-                noPassivesTotalDef * (specialMultiplier / 100);
-            var passivesBonus = passivesTotalDef * (specialMultiplier / 100);
-
-            noPassivesNonCrit += noPassivesBonus;
-            passivesNonCrit += passivesBonus;
-
-            break;
-        default:
-            break;
-    }
-
-    noPassivesNonCritView.innerText = noPassivesNonCrit;
-    noPassivesCritView.innerText = noPassivesCrit;
-    noPassivesAvgView.innerText = noPassivesAvg;
-    passivesNonCritView.innerText = passivesNonCrit;
-    passivesCritView.innerText = passivesCrit;
-    passivesAvgView.innerText = passivesAvg;
+    qNonCritView.innerText = totalQNonCrit;
+    qCritView.innerText = totalQCrit;
+    qAvgView.innerText = totalQAvg;
 }
