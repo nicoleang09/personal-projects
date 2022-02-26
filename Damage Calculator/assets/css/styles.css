@@ -169,13 +169,14 @@ table .heading-col {
 
 .row-category {
     flex-grow: 1;
+    flex-basis: 25%;
 }
 
 .row-category p {
     margin-top: 10px;
 }
 
-.row-category input, select {
+.row-category input, select, p {
     width: 80%;
 }
 

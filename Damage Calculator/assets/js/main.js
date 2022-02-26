@@ -1,8 +1,3 @@
-// Output views
-var naNonCritView, naCritView, naAvgView;
-var eNonCritView, eCritView, eAvgView;
-var qNonCritView, qCritView, qAvgView;
-
 // Character input views
 var charBaseAtk, charBaseHp, charBaseDef, charElementalBonus, charCr, charCd;
 
@@ -15,7 +10,8 @@ var weaponSubstat, weaponSubstatVal;
 var weaponPassive, weaponPassiveVal;
 
 // Artifact input views
-var artifactSetEffect, artifactSetEffectVal;
+var artifact2SetEffect, artifact2SetEffectVal;
+var artifact4SetEffect, artifact4SetEffectVal;
 var artifactFlatAtk,
     artifactFlatHp,
     artifactFlatDef,
@@ -35,13 +31,6 @@ function setRangeSlider(view) {
         "%, #fff " +
         value +
         "%, white 100%)";
-}
-
-function setup() {
-    // setCharInputViews();
-    // setWeaponInputViews();
-    // setArtifactInputViews();
-    // setOutputViews();
 }
 
 function getCharInputValues() {
@@ -68,8 +57,10 @@ function getWeaponInputValues() {
 }
 
 function getArtifactInputValues() {
-    artifactSetEffect = document.getElementById("2set-effect-selection").value;
-    artifactSetEffectVal = document.getElementById("2set-effect-val").value;
+    artifact2SetEffect = document.getElementById("2set-effect-selection").value;
+    artifact2SetEffectVal = document.getElementById("2set-effect-val").value;
+    artifact4SetEffect = document.getElementById("4set-effect-selection").value;
+    artifact4SetEffectVal = document.getElementById("4set-effect-val").value;
     artifactFlatAtk = document.getElementById("artifacts-atk").value;
     artifactFlatHp = document.getElementById("artifacts-hp").value;
     artifactFlatDef = document.getElementById("artifacts-def").value;
@@ -155,21 +146,41 @@ function calculateOutputs() {
             break;
     }
 
-    switch (artifactSetEffect) {
+    switch (artifact2SetEffect) {
         case "atk":
-            atkMultiplier += +artifactSetEffectVal;
+            atkMultiplier += +artifact2SetEffectVal;
             break;
         case "hp":
-            hpMultiplier += +artifactSetEffectVal;
+            hpMultiplier += +artifact2SetEffectVal;
             break;
         case "def":
-            defMultiplier += +artifactSetEffectVal;
+            defMultiplier += +artifact2SetEffectVal;
             break;
         case "dmg-bonus":
-            dmgBonus += +artifactSetEffectVal;
+            dmgBonus += +artifact2SetEffectVal;
             break;
         case "elem-dmg-bonus":
-            elemDmgBonus += +artifactSetEffectVal;
+            elemDmgBonus += +artifact2SetEffectVal;
+            break;
+        default:
+            break;
+    }
+
+    switch (artifact4SetEffect) {
+        case "atk":
+            atkMultiplier += +artifact4SetEffectVal;
+            break;
+        case "hp":
+            hpMultiplier += +artifact4SetEffectVal;
+            break;
+        case "def":
+            defMultiplier += +artifact4SetEffectVal;
+            break;
+        case "dmg-bonus":
+            dmgBonus += +artifact4SetEffectVal;
+            break;
+        case "elem-dmg-bonus":
+            elemDmgBonus += +artifact4SetEffectVal;
             break;
         default:
             break;
@@ -188,14 +199,6 @@ function calculateOutputs() {
     var totalECrit = totalENonCrit * (1 + critDmg / 100);
     var totalEAvg =
         (critRate / 100) * totalECrit + (1 - critRate / 100) * totalENonCrit;
-
-    // eNonCritView.innerText = totalENonCrit.toFixed(2);
-    // eCritView.innerText = totalECrit.toFixed(2);
-    // eAvgView.innerText = totalEAvg.toFixed(2);
-
-    // qNonCritView.innerText = totalQNonCrit;
-    // qCritView.innerText = totalQCrit;
-    // qAvgView.innerText = totalQAvg;
 }
 
 function fillTableData() {
