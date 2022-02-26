@@ -23,22 +23,22 @@
             <h3>Ayato's Base Stats</h3>
 
             <p>Base attack</p>
-            <input type="number" id="char-base-atk"/>
+            <input type="number" id="char-base-atk" value="251"/>
 
             <p>Base HP</p>
-            <input type="number" id="char-base-hp"/>
+            <input type="number" id="char-base-hp" value="11863"/>
 
             <p>Base def</p>
-            <input type="number" id="char-base-def"/>
+            <input type="number" id="char-base-def" value="719"/>
 
             <p>Elemental damage bonus</p>
-            <input type="number" id="char-elemental-bonus"/>
+            <input type="number" id="char-elemental-bonus" value="0"/>
 
             <p>Crit rate</p>
-            <input type="number" id="char-cr"/>
+            <input type="number" id="char-cr" value="5"/>
 
             <p>Crit damage</p>
-            <input type="number" id="char-cd"/>
+            <input type="number" id="char-cd" value="78.8"/>
 
         </br></br>
 
@@ -52,14 +52,14 @@
 
             <p>Skill Level</p>
             <div class="range-bar">
-                <input type="range" id="char-skill-lvl" min="1" max="10" oninput="setRangeSlider(this)"/>
+                <input type="range" id="char-skill-lvl" min="1" max="10" value="8" oninput="setRangeSlider(this)"/>
                 <output>6</output>
             </div>
 
             <p>Burst Level</p>
             <div class="range-bar">
                 <!-- <input type="range" id="char-burst-lvl" min="1" max="10" oninput="this.nextElementSibling.value = this.value"/> -->
-                <input type="range" id="char-burst-lvl" min="1" max="10" oninput="setRangeSlider(this)"/>
+                <input type="range" id="char-burst-lvl" min="1" max="10" value="8" oninput="setRangeSlider(this)"/>
                 <output>6</output>
             </div>
 
@@ -72,7 +72,7 @@
             <h3>Weapon Stats</h3>
 
             <p>Weapon base attack</p>
-            <input type="number" id="weapon-base-atk"/>
+            <input type="number" id="weapon-base-atk" value="449"/>
 
             <p>Weapon substat</p>
             <select id="weapon-substat-selection">
@@ -86,42 +86,55 @@
             </select>
 
             <p>Substat percentage</p>
-            <input type="number" id="weapon-substat-val"/>
+            <input type="number" id="weapon-substat-val" value="37.7"/>
 
             <p>Weapon passive</p>
             <select id="weapon-passive-selection">
+                <option value="dmg-bonus">DMG bonus</option>
                 <option value="atk">Atk</option>
                 <option value="hp">HP</option>
                 <option value="def">Def</option>
-                <option value="dmg-bonus">DMG bonus</option>
             </select>
 
             <p>Passive percentage</p>
-            <input type="number" id="weapon-passive-val"/>
+            <input type="number" id="weapon-passive-val" value="20"/>
         </div>
 
         <div id="artifact-values" class="row-category">
             <h3>Artifact Stats</h3>
 
-            <p>Set effect type</p>
+            <p>2-Set effect type</p>
             <select id="set-effect-selection">
+                <option value="elem-dmg-bonus">Elemental DMG bonus</option>
                 <option value="atk">Atk</option>
                 <option value="hp">HP</option>
                 <option value="def">Def</option>
                 <option value="dmg-bonus">DMG bonus</option>
             </select>
 
-            <p>Set effect percentage</p>
-            <input type="number" id="set-effect-val"/>
+            <p>2-Set effect percentage</p>
+            <input type="number" id="2set-effect-val" value="15"/>
+
+            <p>4-Set effect type</p>
+            <select id="4set-effect-selection">
+                <option value="atk">Atk</option>
+                <option value="hp">HP</option>
+                <option value="def">Def</option>
+                <option value="elem-dmg-bonus">Elemental DMG bonus</option>
+                <option value="dmg-bonus">DMG bonus</option>
+            </select>
+
+            <p>4-Set effect percentage</p>
+            <input type="number" id="4set-effect-val"/>
 
             <p>Flat atk</p>
-            <input type="number" id="artifacts-atk"/>
+            <input type="number" id="artifacts-atk" value="256"/>
 
             <p>Atk%</p>
-            <input type="number" id="artifacts-atk-percent"/>
+            <input type="number" id="artifacts-atk-percent" value="38.7"/>
 
             <p>Flat HP</p>
-            <input type="number" id="artifacts-hp"/>
+            <input type="number" id="artifacts-hp" value="3967"/>
 
             <p>HP%</p>
             <input type="number" id="artifacts-hp-percent"/>
@@ -137,10 +150,10 @@
             <input type="number" id="artifacts-def-percent"/>
 
             <p>Elemental damage bonus</p>
-            <input type="number" id="artifacts-elemental-bonus"/>
+            <input type="number" id="artifacts-elemental-bonus" value="53.7"/>
 
             <p>Crit rate</p>
-            <input type="number" id="artifacts-cr"/>
+            <input type="number" id="artifacts-cr" value="26"/>
 
             <p>Crit damage</p>
             <input type="number" id="artifacts-cd"/>
