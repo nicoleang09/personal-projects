@@ -118,7 +118,7 @@ button {
     width: 100%;
     height: 500px;
     right: 0;
-    top: 110%;
+    top: 135%;
     overflow: hidden;
     /* -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, 
     from(rgba(0,0,0,1)), to(rgba(0,0,0,0))); */

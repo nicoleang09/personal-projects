@@ -1,41 +1,30 @@
 // Output views
-var noPassivesNonCritView;
-var noPassivesCritView;
-var noPassivesAvgView;
-var passivesNonCritView;
-var passivesCritView;
-var passivesAvgView;
+var naNonCritView, naCritView, naAvgView;
+var eNonCritView, eCritView, eAvgView;
+var qNonCritView, qCritView, qAvgView;
 
 // Character input views
-var charBaseAtk;
-var charBaseHp;
-var charBaseDef;
-var charBaseElementalBonus;
-var charBaseCr;
-var charBaseCd;
-var charTalentDmgMultiplier;
-var charSpecialScalingStat;
-var charSpecialScalingVal;
+var charBaseAtk, charBaseHp, charBaseDef, charElementalBonus, charCr, charCd;
+
+// Character talent & const input views
+var charNaLvl, charELvl, charQLvl, charC3, charC5;
 
 // Weapon input views
 var weaponBaseAtk;
-var weaponSubstat;
-var weaponSubstatVal;
-var weaponPassive;
-var weaponPassiveVal;
+var weaponSubstat, weaponSubstatVal;
+var weaponPassive, weaponPassiveVal;
 
 // Artifact input views
-var artifactSetEffect;
-var artifactSetEffectVal;
-var artifactFlatAtk;
-var artifactFlatHp;
-var artifactFlatDef;
-var artifactAtkPercent;
-var artifactHpPercent;
-var artifactDefPercent;
-var artifactElementalBonus;
-var artifactCr;
-var artifactCd;
+var artifactSetEffect, artifactSetEffectVal;
+var artifactFlatAtk,
+    artifactFlatHp,
+    artifactFlatDef,
+    artifactAtkPercent,
+    artifactHpPercent,
+    artifactDefPercent,
+    artifactElementalBonus,
+    artifactCr,
+    artifactCd;
 
 function setRangeSlider(view) {
     view.nextElementSibling.value = view.value;
@@ -48,89 +37,93 @@ function setRangeSlider(view) {
         "%, white 100%)";
 }
 
-function setAllViews() {
-    setCharInputViews();
-    setWeaponInputViews();
-    setArtifactInputViews();
+function setup() {
+    // setCharInputViews();
+    // setWeaponInputViews();
+    // setArtifactInputViews();
     setOutputViews();
 }
 
-function setCharInputViews() {
-    charBaseAtk = document.getElementById("char-base-atk");
-    charBaseHp = document.getElementById("char-base-hp");
-    charBaseDef = document.getElementById("char-base-def");
-    charBaseElementalBonus = document.getElementById("char-elemental-bonus");
-    charBaseCr = document.getElementById("char-cr");
-    charBaseCd = document.getElementById("char-cd");
-    charTalentDmgMultiplier = document.getElementById("char-talent-multiplier");
-    charSpecialScalingStat = document.getElementById(
-        "char-special-scaling-selection"
-    );
-    charSpecialScalingVal = document.getElementById("char-special-scaling-val");
+function getCharInputValues() {
+    charBaseAtk = document.getElementById("char-base-atk").value;
+    charBaseHp = document.getElementById("char-base-hp").value;
+    charBaseDef = document.getElementById("char-base-def").value;
+    charElementalBonus = document.getElementById("char-elemental-bonus").value;
+    charCr = document.getElementById("char-cr").value;
+    charCd = document.getElementById("char-cd").value;
+
+    charNaLvl = document.getElementById("char-na-lvl").value;
+    charELvl = document.getElementById("char-skill-lvl").value;
+    charQLvl = document.getElementById("char-burst-lvl").value;
+    charC3 = document.getElementById("char-has-c3").value;
+    charC5 = document.getElementById("char-has-c5").value;
 }
 
-function setWeaponInputViews() {
-    weaponBaseAtk = document.getElementById("weapon-base-atk");
-    weaponSubstat = document.getElementById("weapon-substat-selection");
-    weaponSubstatVal = document.getElementById("weapon-substat-val");
-    weaponPassive = document.getElementById("weapon-passive-selection");
-    weaponPassiveVal = document.getElementById("weapon-passive-val");
+function getWeaponInputValues() {
+    weaponBaseAtk = document.getElementById("weapon-base-atk").value;
+    weaponSubstat = document.getElementById("weapon-substat-selection").value;
+    weaponSubstatVal = document.getElementById("weapon-substat-val").value;
+    weaponPassive = document.getElementById("weapon-passive-selection").value;
+    weaponPassiveVal = document.getElementById("weapon-passive-val").value;
 }
 
-function setArtifactInputViews() {
-    artifactSetEffect = document.getElementById("set-effect-selection");
-    artifactSetEffectVal = document.getElementById("set-effect-val");
-    artifactFlatAtk = document.getElementById("artifacts-atk");
-    artifactFlatHp = document.getElementById("artifacts-hp");
-    artifactFlatDef = document.getElementById("artifacts-def");
-    artifactAtkPercent = document.getElementById("artifacts-atk-percent");
-    artifactHpPercent = document.getElementById("artifacts-hp-percent");
-    artifactDefPercent = document.getElementById("artifacts-def-percent");
+function getArtifactInputValues() {
+    artifactSetEffect = document.getElementById("set-effect-selection").value;
+    artifactSetEffectVal = document.getElementById("set-effect-val").value;
+    artifactFlatAtk = document.getElementById("artifacts-atk").value;
+    artifactFlatHp = document.getElementById("artifacts-hp").value;
+    artifactFlatDef = document.getElementById("artifacts-def").value;
+    artifactAtkPercent = document.getElementById("artifacts-atk-percent").value;
+    artifactHpPercent = document.getElementById("artifacts-hp-percent").value;
+    artifactDefPercent = document.getElementById("artifacts-def-percent").value;
     artifactElementalBonus = document.getElementById(
         "artifacts-elemental-bonus"
-    );
-    artifactCr = document.getElementById("artifacts-cr");
-    artifactCd = document.getElementById("artifacts-cd");
+    ).value;
+    artifactCr = document.getElementById("artifacts-cr").value;
+    artifactCd = document.getElementById("artifacts-cd").value;
 }
 
 function setOutputViews() {
-    noPassivesNonCritView = document.getElementById("no-passives-non-crit");
-    noPassivesCritView = document.getElementById("no-passives-crit");
-    noPassivesAvgView = document.getElementById("no-passives-avg");
-    passivesNonCritView = document.getElementById("passives-non-crit");
-    passivesCritView = document.getElementById("passives-crit");
-    passivesAvgView = document.getElementById("passives-avg");
+    naNonCritView = document.getElementById("na-non-crit");
+    naCritView = document.getElementById("na-crit");
+    naAvgView = document.getElementById("na-avg");
+    eNonCritView = document.getElementById("e-non-crit");
+    eCritView = document.getElementById("e-crit");
+    eAvgView = document.getElementById("e-avg");
+    qNonCritView = document.getElementById("q-non-crit");
+    qCritView = document.getElementById("q-crit");
+    qAvgView = document.getElementById("q-avg");
 }
 
 function calculateOutputs() {
-    var totalBaseAtk = charBaseAtk.value + weaponBaseAtk.value;
-    var baseAtkMultiplier = artifactAtkPercent.value;
-    var flatAtkBonus = artifactFlatAtk.value;
-    var passivesAtkMultiplier = 0;
-    var totalBaseHp = charBaseHp.value + artifactFlatHp.value;
-    var baseHpMultiplier = artifactHpPercent.value;
-    var flatHpBonus = artifactFlatHp.value;
-    var passivesHpMultiplier = 0;
-    var totalBaseDef = charBaseDef.value + artifactFlatDef.value;
-    var baseDefMultiplier = artifactDefPercent.value;
-    var flatDefBonus = artifactFlatDef.value;
-    var passivesDefMultiplier = 0;
-    var baseDmgBonus = charBaseElementalBonus.value;
-    var passivesDmgBonus = 0;
-    var critRate = charBaseCr.value + artifactCr.value;
-    var critDmg = charBaseCd.value + artifactCd.value;
-    var skillMultiplier = charTalentDmgMultiplier.value;
+    getCharInputValues();
+    getWeaponInputValues();
+    getArtifactInputValues();
 
-    var substatVal = weaponSubstatVal.value;
-    switch (weaponSubstat.value) {
+    var baseAtk = charBaseAtk + weaponBaseAtk;
+    var atkMultiplier = artifactAtkPercent;
+    var flatAtkBonus = artifactFlatAtk;
+    var baseHp = charBaseHp;
+    var hpMultiplier = artifactHpPercent;
+    var flatHpBonus = artifactFlatHp;
+    var baseDef = charBaseDef;
+    var defMultiplier = artifactDefPercent;
+    var flatDefBonus = artifactFlatDef;
+    var elemDmgBonus = charElementalBonus;
+    var dmgBonus = 0;
+    var critRate = charCr + artifactCr;
+    var critDmg = charCd + artifactCd;
+
+    var substatVal = weaponSubstatVal;
+    switch (weaponSubstat) {
         case "atk":
-            baseAtkMultiplier += substatVal;
+            atkMultiplier += substatVal;
             break;
         case "hp":
-            baseHpMultiplier += substatVal;
+            hpMultiplier += substatVal;
             break;
         case "def":
-            baseDefMultiplier += substatVal;
+            defMultiplier += substatVal;
             break;
         case "crit-rate":
             critRate += substatVal;
@@ -183,20 +176,20 @@ function calculateOutputs() {
     }
 
     var noPassivesNonCrit =
-        totalBaseAtk *
-        (1 + baseAtkMultiplier / 100) *
+        baseAtk *
+        (1 + atkMultiplier / 100) *
         (skillMultiplier / 100) *
-        (1 + baseDmgBonus / 100);
+        (1 + elemDmgBonus / 100);
     var noPassivesCrit = noPassivesNonCrit * (1 + critDmg / 100);
     var noPassivesAvg =
         (critRate / 100) * noPassivesCrit +
         (1 - critRate / 100) * noPassivesNonCrit;
 
     var passivesNonCrit =
-        totalBaseAtk *
-        (1 + baseAtkMultiplier / 100 + passivesAtkMultiplier / 100) *
+        baseAtk *
+        (1 + atkMultiplier / 100 + passivesAtkMultiplier / 100) *
         (skillMultiplier / 100) *
-        (1 + baseDmgBonus / 100 + passivesDmgBonus / 100);
+        (1 + elemDmgBonus / 100 + passivesDmgBonus / 100);
     var passivesCrit = passivesNonCrit * (1 + critDmg / 100);
     var passivesAvg =
         (critRate / 100) * passivesCrit +
@@ -207,12 +200,10 @@ function calculateOutputs() {
     switch (charSpecialScalingStat.value) {
         case "atk":
             var noPassivesTotalAtk =
-                totalBaseAtk * (1 + baseAtkMultiplier / 100) + flatAtkBonus;
+                baseAtk * (1 + atkMultiplier / 100) + flatAtkBonus;
             var passivesTotalAtk =
-                totalBaseAtk *
-                    (1 +
-                        baseAtkMultiplier / 100 +
-                        passivesAtkMultiplier / 100) +
+                baseAtk *
+                    (1 + atkMultiplier / 100 + passivesAtkMultiplier / 100) +
                 flatAtkBonus;
             var noPassivesBonus =
                 noPassivesTotalAtk * (specialMultiplier / 100);
@@ -224,10 +215,9 @@ function calculateOutputs() {
             break;
         case "hp":
             var noPassivesTotalHp =
-                totalBaseHp * (1 + baseHpMultiplier / 100) + flatHpBonus;
+                baseHp * (1 + hpMultiplier / 100) + flatHpBonus;
             var passivesTotalHp =
-                totalBaseHp *
-                    (1 + baseHpMultiplier / 100 + passivesHpMultiplier / 100) +
+                baseHp * (1 + hpMultiplier / 100 + passivesHpMultiplier / 100) +
                 flatHpBonus;
             var noPassivesBonus = noPassivesTotalHp * (specialMultiplier / 100);
             var passivesBonus = passivesTotalHp * (specialMultiplier / 100);
@@ -238,12 +228,10 @@ function calculateOutputs() {
             break;
         case "def":
             var noPassivesTotalDef =
-                totalBaseDef * (1 + baseDefMultiplier / 100) + flatDefBonus;
+                baseDef * (1 + defMultiplier / 100) + flatDefBonus;
             var passivesTotalDef =
-                totalBaseDef *
-                    (1 +
-                        baseDefMultiplier / 100 +
-                        passivesDefMultiplier / 100) +
+                baseDef *
+                    (1 + defMultiplier / 100 + passivesDefMultiplier / 100) +
                 flatDefBonus;
             var noPassivesBonus =
                 noPassivesTotalDef * (specialMultiplier / 100);

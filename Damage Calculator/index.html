@@ -13,7 +13,7 @@
 
 </head>
 
-<body onload="setAllViews()">
+<body onload="setup()">
 
     <h1>Damage Calculator</h1>
 
@@ -153,12 +153,18 @@
     <div class="stats-row-container">
         <div class="row-category output-row-item-lhs">
             <h3>Calculated Damage</h3>
-            <p><b>Damage without passives considered</b></p>
+
+            <p><b>NA Damage</b></p>
             <p>Non-crit damage</p>
             <p>Crit damage</p>
             <p>Average damage</p>
         </br>
-            <p><b>Damage with passives considered</b></p>
+            <p><b>Skill Damage</b></p>
+            <p>Non-crit damage</p>
+            <p>Crit damage</p>
+            <p>Average damage</p>
+        </br>
+            <p><b>Burst Damage</b></p>
             <p>Non-crit damage</p>
             <p>Crit damage</p>
             <p>Average damage</p>
@@ -166,15 +172,21 @@
 
         <div class="row-category output-row-item-rhs">
             <h3> </h3>
+
             <p> </p>
-            <p id="no-passives-non-crit"> </p>
-            <p id="no-passives-crit"> </p>
-            <p id="no-passives-avg"> </p>
+            <p id="na-non-crit"> </p>
+            <p id="na-crit"> </p>
+            <p id="na-avg"> </p>
         </br>
             <p> </p>
-            <p id="passives-non-crit"> </p>
-            <p id="passives-crit"> </p>
-            <p id="passives-avg"> </p>
+            <p id="e-non-crit"> </p>
+            <p id="e-crit"> </p>
+            <p id="e-avg"> </p>
+        </br>
+            <p> </p>
+            <p id="q-non-crit"> </p>
+            <p id="q-crit"> </p>
+            <p id="q-avg"> </p>
         </div>
     </div>
 
