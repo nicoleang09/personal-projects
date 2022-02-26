@@ -1,59 +1,151 @@
 class MultiplierValues {
-    static qLvl6 = 77.02;
-    static qLvl7 = 82.53;
-    static qLvl8 = 88.03;
-    static qLvl9 = 93.53;
-    static qLvl10 = 104.53;
-
-    static getSkill3HitMultiplier(level) {
+    static getNAMultipliers(level) {
         switch (level) {
             case 1:
-                break;
+                return [44.96, 47.16, 58.61, 29.45 * 2, 75.6, 129.53, 63.93];
             case 2:
-                break;
+                return [48.62, 51, 63.38, 31.85 * 2, 81.76, 140.07, 69.14];
             case 3:
-                break;
+                return [52.28, 54.83, 68.15, 34.24 * 2, 87.91, 150.62, 74.34];
             case 4:
-                break;
+                return [57.51, 60.32, 74.97, 37.67 * 2, 96.7, 165.68, 81.77];
             case 5:
-                break;
+                return [61.17, 64.16, 79.74, 40.06 * 2, 102.86, 176.22, 86.98];
             case 6:
-                return 94.38;
+                return [65.35, 68.54, 85.19, 45.8 * 2, 109.89, 188.27, 92.93];
             case 7:
-                return 102.68;
+                return [71.1, 74.57, 92.69, 46.57 * 2, 119.56, 204.84, 101.1];
             case 8:
-                return 110.99;
+                return [
+                    76.85,
+                    80.61,
+                    100.19,
+                    50.34 * 2,
+                    129.23,
+                    129.23,
+                    221.41,
+                    109.28,
+                ];
             case 9:
-                return 119.29;
+                return [82.6, 86.64, 107.68, 54.1 * 2, 138.9, 237.97, 117.46];
             case 10:
-                return 128.35;
+                return [
+                    88.88,
+                    93.22,
+                    115.86,
+                    58.21 * 2,
+                    149.45,
+                    256.05,
+                    126.38,
+                ];
+            case 11:
+                return [95.15, 99.8, 124.04, 62.32 * 2, 160, 274.12, 135.3];
+            case 12:
+                return [
+                    101.43,
+                    106.38,
+                    132.22,
+                    66.43 * 2,
+                    170.55,
+                    292.19,
+                    144.22,
+                ];
+            case 13:
+                return [107.7, 112.96, 140.4, 70.54 * 2, 181.1, 310.27, 153.14];
+            case 14:
+                return [
+                    113.97,
+                    119.54,
+                    148.58,
+                    74.65 * 2,
+                    191.65,
+                    328.34,
+                    162.06,
+                ];
+            case 15:
+                return [
+                    120.25,
+                    126.12,
+                    156.75,
+                    78.76 * 2,
+                    202.2,
+                    346.42,
+                    170.98,
+                ];
             default:
                 return 1;
         }
     }
 
-    static getWaveflashMultiplier(level) {
+    static getSkillMultipliers(level) {
         switch (level) {
             case 1:
-                break;
+                return [52.89, 58.91, 64.93, 0.56 * 64, 101.48];
             case 2:
-                break;
+                return [57.2, 63.71, 70.22, 0.61 * 64, 109.74];
             case 3:
-                break;
+                return [61.5, 68.5, 75.5, 0.65 * 64, 118];
             case 4:
-                break;
+                return [67.65, 75.35, 83.05, 0.72 * 64, 129.8];
             case 5:
-                break;
+                return [71.96, 80.15, 88.34, 0.76 * 64, 138.06];
             case 6:
-                return 0.82 * 4;
+                return [76.88, 85.63, 94.38, 0.82 * 64, 147.5];
             case 7:
-                return 0.89 * 4;
+                return [83.64, 93.16, 102.68, 0.89 * 64, 160.48];
             case 8:
-                return 0.96 * 4;
+                return [90.41, 100.7, 110.99, 0.96 * 64, 173.46];
             case 9:
-                return 1.03 * 4;
+                return [97.17, 108.23, 119.29, 1.03 * 64, 186.44];
             case 10:
-                return 1.11 * 4;
+                return [104.55, 116.45, 128.35, 1.11 * 64, 200.6];
+            case 11:
+                return [111.93, 124.67, 137.41, 1.19 * 64, 214.76];
+            case 12:
+                return [119.31, 132.89, 146.47, 1.27 * 64, 228.92];
+            case 13:
+                return [126.69, 141.11, 155.53, 1.34 * 64, 243.08];
+            case 14:
+                return [134.07, 149.33, 164.59, 1.42 * 64, 257.24];
+            case 15:
+                return [141.45, 157.55, 173.65, 1.5 * 64, 271.4];
+            default:
+                return 1;
+        }
+    }
+
+    static getBurstMultipliers(level) {
+        switch (level) {
+            case 1:
+                return [55.02];
+            case 2:
+                return [59.14];
+            case 3:
+                return [63.27];
+            case 4:
+                return [68.77];
+            case 5:
+                return [72.9];
+            case 6:
+                return [77.02];
+            case 7:
+                return [82.53];
+            case 8:
+                return [88.03];
+            case 9:
+                return [93.53];
+            case 10:
+                return [104.53];
+            case 11:
+                return [104.53];
+            case 12:
+                return [110.04];
+            case 13:
+                return [116.91];
+            case 14:
+                return [123.79];
+            case 15:
+                return [130.67];
             default:
                 return 1;
         }

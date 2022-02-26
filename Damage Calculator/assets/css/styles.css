@@ -94,6 +94,12 @@ button {
     margin: 20px 0px 20px 0px;
 }
 
+table, th, td {
+    border: 1px rgba(69, 59, 54, 0.2) solid;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
 table td {
     text-align: right;
 }

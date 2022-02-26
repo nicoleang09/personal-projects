@@ -41,7 +41,7 @@ function setup() {
     // setCharInputViews();
     // setWeaponInputViews();
     // setArtifactInputViews();
-    setOutputViews();
+    // setOutputViews();
 }
 
 function getCharInputValues() {
@@ -189,11 +189,27 @@ function calculateOutputs() {
     var totalEAvg =
         (critRate / 100) * totalECrit + (1 - critRate / 100) * totalENonCrit;
 
-    eNonCritView.innerText = totalENonCrit.toFixed(2);
-    eCritView.innerText = totalECrit.toFixed(2);
-    eAvgView.innerText = totalEAvg.toFixed(2);
+    // eNonCritView.innerText = totalENonCrit.toFixed(2);
+    // eCritView.innerText = totalECrit.toFixed(2);
+    // eAvgView.innerText = totalEAvg.toFixed(2);
 
     // qNonCritView.innerText = totalQNonCrit;
     // qCritView.innerText = totalQCrit;
     // qAvgView.innerText = totalQAvg;
+}
+
+function fillTableData() {
+    var naViewIds = [
+        "na1",
+        "na2",
+        "na3",
+        "na4",
+        "na5",
+        "nacharged",
+        "naplunge",
+    ];
+
+    var eViewIds = ["e1", "e2", "e3", "ewaveflash", "eillussion"];
+
+    var qViewIds = ["q"];
 }
