@@ -9,12 +9,13 @@
     <link rel="icon" type="image/png" href="images/favicon round.png">
 
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="assets/js/talent_multiplier_values.js"></script>
+    <script src="assets/js/artifact_sets.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/values.js"></script>
 
 </head>
 
-<body>
+<body onload="setUp()">
 
     <h1>Damage Calculator</h1>
 
@@ -104,33 +105,15 @@
         <div id="artifact-values" class="row-category">
             <h3>Artifact Stats</h3>
 
-            <p>2-Set effect type</p>
+            <p>2-Set</p>
             <select id="2set-effect-selection">
-                <option value="elem-dmg-bonus">Elemental DMG bonus</option>
-                <option value="atk">Atk</option>
-                <option value="hp">HP</option>
-                <option value="def">Def</option>
-                <option value="dmg-bonus">DMG bonus</option>
+                <option value="none">None</option>
             </select>
 
-            <p>2-Set effect percentage</p>
-            <input type="number" id="2set-effect-val" value="15"/>
-
-            <p>4-Set effect type</br>(If using another 2 set, enter the 2 set bonus)</p>
+            <p>2-Set</br>(If using a 4 set, enter the same set as above)</p>
             <select id="4set-effect-selection">
-                <option value="atk">Atk</option>
-                <option value="hp">HP</option>
-                <option value="def">Def</option>
-                <option value="em">Elemental mastery</option>
-                <option value="er">Energy recharge</option>
-                <option value="elem-dmg-bonus">Elemental DMG bonus</option>
-                <option value="dmg-bonus">General DMG bonus</option>
-                <option value="crit-rate">Crit rate</option>
-                <option value="crit-damage">Crit damage</option>
+                <option value="none">None</option>
             </select>
-
-            <p>4-Set effect percentage</br>(If using another 2 set, enter the 2 set bonus)</p>
-            <input type="number" id="4set-effect-val"/>
 
             <p>Flat atk</p>
             <input type="number" id="artifacts-atk" value="256"/>

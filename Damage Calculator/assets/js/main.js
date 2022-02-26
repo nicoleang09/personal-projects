@@ -10,8 +10,8 @@ var weaponSubstat, weaponSubstatVal;
 var weaponPassive, weaponPassiveVal;
 
 // Artifact input views
-var artifact2SetEffect, artifact2SetEffectVal;
-var artifact4SetEffect, artifact4SetEffectVal;
+var artifact2Set1;
+var artifact2Set2;
 var artifactFlatAtk,
     artifactFlatHp,
     artifactFlatDef,
@@ -21,6 +21,30 @@ var artifactFlatAtk,
     artifactElementalBonus,
     artifactCr,
     artifactCd;
+
+function setUp() {
+    setArtifactSets();
+}
+
+function setArtifactSets() {
+    // console.log("setting up artifact sets");
+    var artifactSets = Object.keys(artifactSetMap);
+    // console.log("artifact set keys: ", artifactSets);
+
+    for (let index in artifactSets) {
+        var artifactSet = artifactSets[index];
+        // console.log("artifact set name: " + artifactSet);
+
+        var option = document.createElement("option");
+        option.value = artifactSet;
+        option.innerText = artifactSetMap[artifactSet].name;
+
+        document.getElementById("2set-effect-selection").appendChild(option);
+        document
+            .getElementById("4set-effect-selection")
+            .appendChild(option.cloneNode(true));
+    }
+}
 
 function setRangeSlider(view) {
     view.nextElementSibling.value = view.value;
