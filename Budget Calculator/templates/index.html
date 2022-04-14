@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Budget Calculator</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% endblock %}
+
+{% block body %}
+<h1>Budget Calculator</h1>
+<h3>Welcome! This calculator can be used to estimate a budget based on the monthly spending records added.</br>Feel free to add in data for as many months as you wish!</h3>
+
+<div class="horizontal-block">
+  <div class="left-block">
+    <form method="POST" action="/">
+      <h2>Monthly record</h2>
+      <div class="form-input">
+        <label>Necessities</label>
+        <input pattern="^\d*(\.\d{0,2})?$" name="m1-necessities" required/>
+      </div>
+      <div class="form-input">
+        <label>Luxuries</label>
+        <input pattern="^\d*(\.\d{0,2})?$" name="m1-luxuries" required/>
+      </div>
+      <div class="form-input">
+        <label>Savings</label>
+        <input pattern="^\d*(\.\d{0,2})?$" name="m1-savings" required/>
+      </div>
+      <br>
+      <input type="submit" value="Add Record">
+    </form>
+  </div>
+
+  <div class="right-block">
+    <h2>Added records</h2>
+    {% if records|length < 1 %}
+    <p>There are no records. Create one now!</p>
+    {% else %}
+    <table id="records-table">
+      <tr>
+        <th>Month</th>
+        <th>Necessities</th>
+        <th>Luxuries</th>
+        <th>Savings</th>
+      </tr>
+      {% for record in records %}
+        <tr>
+          <td>{{ record.id }}</td>
+          <td>{{ record.necessities }}</td>
+          <td>{{ record.luxuries }}</td>
+          <td>{{ record.savings }}</td>
+          <td>
+            <b><a href="/delete/{{record.id}}">Delete</a></b>
+            <br>
+            <b><a href="/update/{{record.id}}">Update</a></b>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </div>
+</div>
+
+<div>
+  <h2>Estimated Budget</h2>
+  <!-- <a href="/">Generate Budget</a> -->
+  {% if records|length < 1 or not avg_arr %}
+  <p>No budget estimated. Please add non-zero records above!</p>
+  {% else %}
+  <div id="piechart"></div>
+  {% endif %}
+</div>
+
+
+
+
+<script type="text/javascript">
+  // Load google charts
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  
+  // Draw the chart and set the chart values
+  function drawChart() {
+    const json = {{ avg_arr|tojson }}
+    const data = google.visualization.arrayToDataTable(json);
+  
+    // Optional; set the width and height of the chart
+    var options = {
+      width:700,
+      height:400,
+      colors: ['#86A465', '#A08E6A', '#BAA2A0'],
+      backgroundColor: 'transparent',
+      chartArea:{left:20,top:20,width:'75%',height:'75%'}
+    };
+  
+    // Display the chart inside the <div> element with id="piechart"
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(data, options);
+  }
+</script>
+{% endblock %}

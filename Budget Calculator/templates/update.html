@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Record Update</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>Update Record</h1>
+
+    <div class="form">
+        <form action="/update/{{ record.id }}" method="POST">
+            <div class="form-input">
+                <label>Necessities</label>
+                <input pattern="^\d*(\.\d{0,2})?$" name="m1-necessities" value="{{ record.necessities }}" required/>
+            </div>
+            <div class="form-input">
+                <label>Luxuries</label>
+                <input pattern="^\d*(\.\d{0,2})?$" name="m1-luxuries" value="{{ record.luxuries }}" required/>
+            </div>
+            <div class="form-input">
+                <label>Savings</label>
+                <input pattern="^\d*(\.\d{0,2})?$" name="m1-savings" value="{{ record.savings }}" required/>
+            </div>
+            <br>
+            <input type="submit" value="Update Record">
+        </form>
+    </div>
+</div>
+{% endblock %}
