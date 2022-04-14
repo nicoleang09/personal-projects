@@ -39,7 +39,7 @@ def index():
     else:
         spending_records = MonthlySpending.query.all()
         print("number of records: %r" % len(spending_records))
-        return render_template("index.html", records=spending_records)
+        return render_template("index.html", records=spending_records, avg_arr=generateBudget())
 
 @app.route('/delete/<int:id>')
 def delete(id):
@@ -69,6 +69,22 @@ def update(id):
 
     else:
         return render_template('update.html', record=record)
+
+def generateBudget():
+    spending_records = MonthlySpending.query.all()
+    records_len = len(spending_records)
+    total_necessities = 0
+    total_luxuries = 0
+    total_savings = 0
+    
+    for record in spending_records:
+        total_necessities += record.necessities
+        total_luxuries += record.luxuries
+        total_savings += record.savings
+    
+    avg_arr = [["Category", "Amount"], ["Necessities", total_necessities/records_len], ["Luxuries", total_luxuries/records_len], ["Savings", total_savings/records_len]]
+    print(avg_arr)
+    return avg_arr
 
 if __name__ == "__main__":
     app.run(debug=True)
