@@ -9,29 +9,17 @@
 <h1>Budget Calculator</h1>
 <h3>Welcome! This calculator can be used to estimate a budget based on your spending over the past 3 months. Hope it is useful!</h3>
 
-<h2>Month 1</h2>
-<label>Necessities</label>
-<input type="number" name="m1-necessities"/>
-<label>Luxuries</label>
-<input type="number" name="m1-luxuries"/>
-<label>Savings</label>
-<input type="number" name="m1-savings"/>
+<form method="POST" action="/">
+    <h2>Monthly Spendings</h2>
+    <label>Necessities</label>
+    <input type="number" name="m1-necessities"/>
+    <label>Luxuries</label>
+    <input type="number" name="m1-luxuries"/>
+    <label>Savings</label>
+    <input type="number" name="m1-savings"/>
 
-<h2>Month 2</h2>
-<label>Necessities</label>
-<input type="number" name="m2-necessities"/>
-<label>Luxuries</label>
-<input type="number" name="m2-luxuries"/>
-<label>Savings</label>
-<input type="number" name="m2-savings"/>
-
-<h2>Month 3</h2>
-<label>Necessities</label>
-<input type="number" name="m3-necessities"/>
-<label>Luxuries</label>
-<input type="number" name="m3-luxuries"/>
-<label>Savings</label>
-<input type="number" name="m3-savings"/>
+    <input type="submit" value="Generate Budget">
+</form>
 
 <h2>Estimate Budget</h2>
 <div id="piechart"></div>
