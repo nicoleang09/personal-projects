@@ -39,7 +39,36 @@ def index():
     else:
         spending_records = MonthlySpending.query.all()
         print("number of records: %r" % len(spending_records))
-        return render_template("index.html", spendings=spending_records)
+        return render_template("index.html", records=spending_records)
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    record_to_delete = MonthlySpending.query.get_or_404(id)
+
+    try:
+        db.session.delete(record_to_delete)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return 'There was a problem deleting that record'
+
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    record = MonthlySpending.query.get_or_404(id)
+
+    if request.method == 'POST':
+        record.necessities = request.form["m1-necessities"]
+        record.luxuries = request.form["m1-luxuries"]
+        record.savings = request.form["m1-savings"]
+
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            return 'There was an issue updating the record'
+
+    else:
+        return render_template('update.html', record=record)
 
 if __name__ == "__main__":
     app.run(debug=True)

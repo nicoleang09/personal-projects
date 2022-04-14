@@ -7,10 +7,10 @@
 
 {% block body %}
 <h1>Budget Calculator</h1>
-<h3>Welcome! This calculator can be used to estimate a budget based on your spending over the past 3 months. Hope it is useful!</h3>
+<h3>Welcome! This calculator can be used to estimate a budget based on your record over the past 3 months. Hope it is useful!</h3>
 
 <form method="POST" action="/">
-  <h2>Monthly Spendings</h2>
+  <h2>Monthly record</h2>
   <label>Necessities</label>
   <input type="number" name="m1-necessities"/>
   <label>Luxuries</label>
@@ -18,12 +18,12 @@
   <label>Savings</label>
   <input type="number" name="m1-savings"/>
 
-  <input type="submit" value="Generate Budget">
+  <input type="submit" value="Add Record">
 </form>
 
 <div>
-  <h2>Added Spendings</h2>
-  {% if spendings|length < 1 %}
+  <h2>Added records</h2>
+  {% if records|length < 1 %}
   <p style="text-align: center">There are no records. Create one above!</p>
   {% else %}
   <table>
@@ -33,16 +33,16 @@
       <th>Luxuries</th>
       <th>Savings</th>
     </tr>
-    {% for spending in spendings %}
+    {% for record in records %}
       <tr>
-        <td>{{ spending.id }}</td>
-        <td>{{ spending.necessities }}</td>
-        <td>{{ spending.luxuries }}</td>
-        <td>{{ spending.savings }}</td>
+        <td>{{ record.id }}</td>
+        <td>{{ record.necessities }}</td>
+        <td>{{ record.luxuries }}</td>
+        <td>{{ record.savings }}</td>
         <td>
-          <a href="/delete/{{spending.id}}">Delete</a>
+          <a href="/delete/{{record.id}}">Delete</a>
           <br>
-          <a href="/update/{{spending.id}}">Update</a>
+          <a href="/update/{{record.id}}">Update</a>
         </td>
       </tr>
     {% endfor %}
