@@ -49,9 +49,9 @@
           <td>{{ record.luxuries }}</td>
           <td>{{ record.savings }}</td>
           <td>
-            <a href="/delete/{{record.id}}">Delete</a>
+            <b><a href="/delete/{{record.id}}">Delete</a></b>
             <br>
-            <a href="/update/{{record.id}}">Update</a>
+            <b><a href="/update/{{record.id}}">Update</a></b>
           </td>
         </tr>
       {% endfor %}
@@ -63,8 +63,8 @@
 <div>
   <h2>Estimated Budget</h2>
   <!-- <a href="/">Generate Budget</a> -->
-  {% if records|length < 1 %}
-  <p>There are no records. Create one now!</p>
+  {% if records|length < 1 or not avg_arr %}
+  <p>No budget estimated. Please add non-zero records above!</p>
   {% else %}
   <div id="piechart"></div>
   {% endif %}

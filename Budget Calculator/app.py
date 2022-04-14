@@ -77,14 +77,14 @@ def generateBudget():
     total_necessities = 0
     total_luxuries = 0
     total_savings = 0
-
-    if records_len == 0:
-        return [["Category", "Amount"], ["Necessities", 0], ["Luxuries", 0], ["Savings", 0]]
     
     for record in spending_records:
         total_necessities += record.necessities
         total_luxuries += record.luxuries
         total_savings += record.savings
+
+    if records_len == 0 or (total_necessities == 0 and total_luxuries == 0 and total_savings == 0):
+        return None
     
     avg_arr = [["Category", "Amount"], ["Necessities", total_necessities/records_len], ["Luxuries", total_luxuries/records_len], ["Savings", total_savings/records_len]]
     print(avg_arr)
