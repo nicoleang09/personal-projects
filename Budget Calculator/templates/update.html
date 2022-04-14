@@ -10,12 +10,18 @@
 
     <div class="form">
         <form action="/update/{{ record.id }}" method="POST">
-            <label>Necessities</label>
-            <input type="number" name="m1-necessities" value="{{ record.necessities }}"/>
-            <label>Luxuries</label>
-            <input type="number" name="m1-luxuries" value="{{ record.luxuries }}"/>
-            <label>Savings</label>
-            <input type="number" name="m1-savings" value="{{ record.savings }}"/>
+            <div class="form-input">
+                <label>Necessities</label>
+                <input pattern="^\d*(\.\d{0,2})?$" name="m1-necessities" value="{{ record.necessities }}" required/>
+            </div>
+            <div class="form-input">
+                <label>Luxuries</label>
+                <input pattern="^\d*(\.\d{0,2})?$" name="m1-luxuries" value="{{ record.luxuries }}" required/>
+            </div>
+            <div class="form-input">
+                <label>Savings</label>
+                <input pattern="^\d*(\.\d{0,2})?$" name="m1-savings" value="{{ record.savings }}" required/>
+            </div>
 
             <input type="submit" value="Update Record">
         </form>

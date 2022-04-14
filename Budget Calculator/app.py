@@ -1,3 +1,4 @@
+from email.policy import default
 from urllib import request
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
@@ -13,9 +14,9 @@ def create_tables():
 
 class MonthlySpending(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    necessities = db.Column(db.Integer, nullable=False)
-    luxuries = db.Column(db.Integer, nullable=False)
-    savings = db.Column(db.Integer, nullable=False)
+    necessities = db.Column(db.Float, nullable=False, default=0)
+    luxuries = db.Column(db.Float, nullable=False, default=0)
+    savings = db.Column(db.Float, nullable=False, default=0)
 
     def __repr__(self) -> str:
         return "< Month %r >" % self.id
@@ -76,6 +77,9 @@ def generateBudget():
     total_necessities = 0
     total_luxuries = 0
     total_savings = 0
+
+    if records_len == 0:
+        return [["Category", "Amount"], ["Necessities", 0], ["Luxuries", 0], ["Savings", 0]]
     
     for record in spending_records:
         total_necessities += record.necessities
