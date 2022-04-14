@@ -36,7 +36,10 @@ def index():
             return redirect("/")
         except:
             return "Failed to add monthly spendings"
-    else: return render_template("index.html")
+    else:
+        spending_records = MonthlySpending.query.all()
+        print("number of records: %r" % len(spending_records))
+        return render_template("index.html", spendings=spending_records)
 
 if __name__ == "__main__":
     app.run(debug=True)
